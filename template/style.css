@@ -169,3 +169,13 @@ button#search-btn>svg {
     font-size: 12px;
     font-weight: 400;
 }
+
+.search-results {
+    font-size: 60px;
+    font-weight: 700;
+    color: #263959;
+}
+
+.search-keyword {
+    color: #6d7c91;
+}
