@@ -179,3 +179,40 @@ button#search-btn>svg {
 .search-keyword {
     color: #6d7c91;
 }
+
+.loading > .image-item {
+    background-color: #f5f5f5;
+    animation: shimmer 2.6s linear infinite forwards;
+    background: linear-gradient(to right, #f5f5f5 20%, #ededed 40%, #f5f5f5 60%);
+    background-size: 800px 104px;
+}
+
+@keyframes shimmer{
+    0%{
+        background-position: -800px 0
+    }
+    100%{
+        background-position: 800px 0
+    }
+}
+
+.loading > .image-item::before,
+.loading > .image-item::after {
+    content: "";
+    position: absolute;
+    left: 1.5rem;
+    background-color: #e6e6e6;
+    display: flex;
+    height: 1.2rem;
+    border-radius: .2rem;
+}
+
+.loading > .image-item::before {
+    bottom: 3.8rem;
+    width: 50%;
+}
+
+.loading > .image-item::after {
+    bottom: 2rem;
+    width: 30%;
+}
