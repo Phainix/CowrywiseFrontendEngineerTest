@@ -1,21 +1,6 @@
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
 }
 
 html, body, #app{
@@ -86,5 +71,32 @@ button {
   border-radius: .6rem;
   align-items: center;
   box-shadow: 0 6px 16px 0 rgba(156, 166, 180, 0.26);
+}
+
+input#query, button#search-btn {
+  border: none;
+  background: transparent;
+}
+
+input#query {
+  border: 1px solid transparent;
+  color: #40516d;
+  width: 80%;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+button#search-btn {
+  padding: 1.8rem;
+  cursor: pointer;
+  display: inline-flex;
+  color: #707c8f;
+
+  > svg {
+    width: 1.3rem;
+    height: 1.3rem;
+  }
 }
 
