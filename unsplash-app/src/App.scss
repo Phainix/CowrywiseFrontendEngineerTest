@@ -1,0 +1,90 @@
+#app {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
+#nav {
+  padding: 30px;
+
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+
+    &.router-link-exact-active {
+      color: #42b983;
+    }
+  }
+}
+
+html, body, #app{
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: block;
+  letter-spacing: .3px;
+  line-height: 1;
+}
+
+#app, input, select, textarea, button {
+  font-size: 20px;
+  font-weight: 500;
+  font-family: 'Quicksand', sans-serif;
+}
+
+a {
+  color: inherit;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6, p, ul, ol {
+  margin: 0;
+  padding: 0;
+}
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: inherit;
+  /* Firefox */
+  opacity: 1;
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: inherit;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: inherit;
+}
+
+input {
+  background: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+.top-bar {
+  width: 100%;
+  padding: 9rem;
+  background-color: #dde2e8;
+}
+
+.input-group {
+  display: flex;
+  background-color: #fff;
+  border-radius: .6rem;
+  align-items: center;
+  box-shadow: 0 6px 16px 0 rgba(156, 166, 180, 0.26);
+}
+
