@@ -35,6 +35,7 @@
     "prettier": "^2.2.1",
     "sass-loader": "^8.0.2",
     "typescript": "~4.1.5",
+    "vue-cli-plugin-svg": "~0.2.1",
     "vue-jest": "^5.0.0-0"
   },
   "eslintConfig": {
