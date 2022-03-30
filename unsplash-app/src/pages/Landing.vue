@@ -24,6 +24,7 @@ import TopBar from "@/components/TopBar.vue";
 import ImageGrid from "@/components/ImageGrid.vue";
 import SearchIcon from "@/assets/vector/search.svg?inline";
 import { Image } from "@/types";
+import axiosInstance from "@/services/axios.ts";
 
 @Options({
   components: {
@@ -33,22 +34,28 @@ import { Image } from "@/types";
   },
 })
 export default class Landing extends Vue {
-  images: number[] = [];
+  images: Image[] = [];
   loading = true;
   query = "";
 
   created(): void {
-    setTimeout(() => {
-      this.loading = false;
-      this.images = [
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0,
-      ];
-    }, 10000);
+    axiosInstance
+      .get("/photos")
+      .then(({ data }) => {
+        console.log(data);
+        this.images = data as Image[];
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        this.loading = false;
+      });
   }
 
   onSubmit(): void {
     console.log(this.query);
+    if (this.query == "") return;
     this.$router.push({ path: "search", query: { query: this.query } });
   }
 }
