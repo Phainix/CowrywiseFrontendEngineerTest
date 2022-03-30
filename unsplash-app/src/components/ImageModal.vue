@@ -5,10 +5,17 @@
       <CloseIcon />
     </span>
     <div class="modal-content">
-      <img src="@/assets/image/photo-5.jpeg" class="modal-image" />
+      <ImageBlur
+        :hash="image?.blur_hash"
+        :width="image?.width"
+        :height="image?.height"
+      />
+      <img :src="image?.urls.regular" class="modal-image" />
       <div class="modal-desc">
-        <span class="user-name">Jordan Okeke</span>
-        <span class="user-location">Pretoria, South Africa</span>
+        <span class="user-name">{{ image?.user.name }}</span>
+        <span class="user-location">{{
+          image?.user.location ?? image?.user.bio
+        }}</span>
       </div>
     </div>
   </div>
@@ -16,8 +23,9 @@
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
-import { Image } from "@/types";
+import { Image } from "@/types/image";
 import CloseIcon from "@/assets/vector/close.svg?inline";
+import ImageBlur from "@/components/ImageBlur.vue";
 
 @Options({
   props: {
@@ -26,16 +34,13 @@ import CloseIcon from "@/assets/vector/close.svg?inline";
   },
   components: {
     CloseIcon,
+    ImageBlur,
   },
   emits: ["onClose"],
 })
 export default class ImageModal extends Vue {
   image!: Image;
   show = false;
-
-  created(): void {
-    console.log(Image, this.image);
-  }
 
   closeModal(): void {
     this.$emit("onClose");

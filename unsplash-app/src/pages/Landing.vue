@@ -23,8 +23,8 @@ import { Options, Vue } from "vue-class-component";
 import TopBar from "@/components/TopBar.vue";
 import ImageGrid from "@/components/ImageGrid.vue";
 import SearchIcon from "@/assets/vector/search.svg?inline";
-import { Image } from "@/types";
 import axiosInstance from "@/services/axios.ts";
+import { Image } from "@/types/image";
 
 @Options({
   components: {
@@ -42,7 +42,6 @@ export default class Landing extends Vue {
     axiosInstance
       .get("/photos")
       .then(({ data }) => {
-        console.log(data);
         this.images = data as Image[];
       })
       .catch((error) => {
@@ -54,7 +53,6 @@ export default class Landing extends Vue {
   }
 
   onSubmit(): void {
-    console.log(this.query);
     if (this.query == "") return;
     this.$router.push({ path: "search", query: { query: this.query } });
   }

@@ -4,7 +4,7 @@
       v-for="(image, index) in images"
       v-bind:key="index"
       :image="image"
-      v-on:click="openModal"
+      v-on:click="openModal(image)"
     />
     <template v-if="loading && images.length == 0">
       <ImageItem v-for="num in 10" v-bind:key="num" />
@@ -14,7 +14,7 @@
 </template>
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
-import { Image } from "@/types";
+import { Image } from "@/types/image";
 import ImageItem from "@/components/ImageItem.vue";
 import ImageModal from "@/components/ImageModal.vue";
 
@@ -34,13 +34,13 @@ export default class ImageGrid extends Vue {
   selectedImage: Image | null = null;
   showModal = false;
 
-  openModal(): void {
-    console.log("parent modal");
+  openModal(image: Image): void {
+    this.selectedImage = image;
     this.showModal = true;
   }
 
   closeModal(): void {
-    console.log("closing modal");
+    this.selectedImage = null;
     this.showModal = false;
   }
 }

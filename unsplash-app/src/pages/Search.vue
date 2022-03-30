@@ -2,7 +2,7 @@
   <div>
     <TopBar>
       <div class="search-results">
-        Search Results for <span class="search-keyword">"{{query}}"</span>
+        Search Results for <span class="search-keyword">"{{ query }}"</span>
       </div>
     </TopBar>
     <ImageGrid :loading="loading" :images="images" />
@@ -14,7 +14,6 @@ import { Options, Vue } from "vue-class-component";
 import TopBar from "@/components/TopBar.vue";
 import ImageGrid from "@/components/ImageGrid.vue";
 import SearchIcon from "@/assets/vector/search.svg?inline";
-import { Image } from "@/types";
 
 @Options({
   components: {
