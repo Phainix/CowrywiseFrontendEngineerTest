@@ -9,6 +9,7 @@
       </div>
     </TopBar>
     <ImageGrid :loading="loading" :images="images" />
+    <VueEternalLoading :load="loadMorePhotos"></VueEternalLoading>
   </div>
 </template>
 
@@ -19,25 +20,38 @@ import ImageGrid from "@/components/ImageGrid.vue";
 import LeftArrowIcon from "@/assets/vector/left.svg?inline";
 import axiosInstance from "@/services/axios.ts";
 import { Image } from "@/types/image";
+import { VueEternalLoading, LoadAction } from "@ts-pro/vue-eternal-loading";
+
+const PAGE_SIZE = 20;
 
 @Options({
   components: {
     TopBar,
     ImageGrid,
     LeftArrowIcon,
+    VueEternalLoading,
   },
 })
 export default class Search extends Vue {
   images: Image[] = [];
   loading = true;
   query = "";
+  page = 1;
 
-  created(): void {
+  async created(): Promise<void> {
     this.query = this.$route.query?.query as string;
-    axiosInstance
-      .get("/search/photos?per_page=20&query=" + this.query)
+    const images: Image[] = await this.getPhotos();
+    this.images.push(...images);
+  }
+
+  async getPhotos(): Promise<Image[]> {
+    let images: Image[] = [];
+    await axiosInstance
+      .get(
+        `/search/photos?query=${this.query}&per_page=${PAGE_SIZE}&page=${this.page}`
+      )
       .then(({ data }) => {
-        this.images = data.results as Image[];
+        images = data.results as Image[];
       })
       .catch((error) => {
         console.log(error);
@@ -45,6 +59,17 @@ export default class Search extends Vue {
       .finally(() => {
         this.loading = false;
       });
+
+    return images;
+  }
+
+  async loadMorePhotos({ loaded }: LoadAction): Promise<void> {
+    this.page = this.page + 1;
+    this.loading = true;
+
+    const images: Image[] = await this.getPhotos();
+    this.images.push(...images);
+    loaded(images.length, PAGE_SIZE);
   }
 }
 </script>

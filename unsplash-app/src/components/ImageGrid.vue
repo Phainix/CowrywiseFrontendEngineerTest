@@ -6,8 +6,12 @@
       :image="image"
       v-on:click="openModal(image)"
     />
-    <template v-if="loading && images.length == 0">
-      <ImageItem v-for="num in 10" v-bind:key="num" />
+    <template v-if="loading">
+      <ImageItem
+        class="image-item-loading"
+        v-for="num in 10"
+        v-bind:key="num"
+      />
     </template>
   </div>
   <ImageModal :show="showModal" :image="selectedImage" @onClose="closeModal" />

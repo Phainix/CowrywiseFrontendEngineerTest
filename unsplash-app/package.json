@@ -9,6 +9,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@ts-pro/vue-eternal-loading": "^1.2.0",
     "axios": "^0.25.0",
     "blurhash": "^1.1.5",
     "core-js": "^3.6.5",

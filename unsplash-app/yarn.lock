@@ -1169,6 +1169,11 @@
   resolved "https://registry.yarnpkg.com/@soda/get-current-script/-/get-current-script-1.0.2.tgz#a53515db25d8038374381b73af20bb4f2e508d87"
   integrity sha512-T7VNNlYVM1SgQ+VsMYhnDkcGmWhQdL0bDyGm5TlQ3GBXnJscEClUUOKduWTmm2zCnvNLC1hc3JpuXjs/nFOc5w==
 
+"@ts-pro/vue-eternal-loading@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@ts-pro/vue-eternal-loading/-/vue-eternal-loading-1.2.0.tgz#c7cce935ac090cc2b1f2961105aab89b9831813c"
+  integrity sha512-SSN+hJ4izg09IZmm5PbuEv3etFXtf1G5Oc71e9Ipi4+dsRYotSmuj0CzZ6wODz1mMgk5XF944GMMOxZ2Ucjr3w==
+
 "@types/babel__core@^7.1.0":
   version "7.1.18"
   resolved "https://registry.yarnpkg.com/@types/babel__core/-/babel__core-7.1.18.tgz#1a29abcc411a9c05e2094c98f9a1b7da6cdf49f8"

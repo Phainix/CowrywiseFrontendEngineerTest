@@ -1,5 +1,10 @@
 <template>
   <div class="image-item">
+    <ImageBlur
+      :hash="image?.blur_hash"
+      :width="image?.width"
+      :height="image?.height"
+    />
     <img :src="thumbnail" alt="" srcset="" />
     <div class="image-overlay">
       <span class="user-name">{{ name }}</span>
@@ -11,10 +16,14 @@
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import { Image } from "@/types/image";
+import ImageBlur from "@/components/ImageBlur.vue";
 
 @Options({
   props: {
     image: Object,
+  },
+  components: {
+    ImageBlur,
   },
 })
 export default class ImageItem extends Vue {

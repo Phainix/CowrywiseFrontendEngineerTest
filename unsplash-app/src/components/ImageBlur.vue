@@ -1,5 +1,5 @@
 <template>
-  <canvas ref="canvas" class="modal-image-canvas" />
+  <canvas ref="canvas" class="image-canvas" />
 </template>
 
 <script lang="ts">
