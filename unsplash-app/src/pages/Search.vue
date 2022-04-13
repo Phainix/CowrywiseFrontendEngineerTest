@@ -2,7 +2,10 @@
   <div>
     <TopBar>
       <div class="search-results">
-        Search Results for <span class="search-keyword">"{{ query }}"</span>
+        <router-link to="/">
+          <span class="back-btn"
+            ><LeftArrowIcon class="icon" /></span></router-link
+        >Search Results for <span class="search-keyword">"{{ query }}"</span>
       </div>
     </TopBar>
     <ImageGrid :loading="loading" :images="images" />
@@ -13,29 +16,35 @@
 import { Options, Vue } from "vue-class-component";
 import TopBar from "@/components/TopBar.vue";
 import ImageGrid from "@/components/ImageGrid.vue";
-import SearchIcon from "@/assets/vector/search.svg?inline";
+import LeftArrowIcon from "@/assets/vector/left.svg?inline";
+import axiosInstance from "@/services/axios.ts";
+import { Image } from "@/types/image";
 
 @Options({
   components: {
     TopBar,
     ImageGrid,
-    SearchIcon,
+    LeftArrowIcon,
   },
 })
 export default class Search extends Vue {
-  images: number[] = [];
+  images: Image[] = [];
   loading = true;
   query = "";
 
   created(): void {
     this.query = this.$route.query?.query as string;
-    setTimeout(() => {
-      this.loading = false;
-      this.images = [
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0,
-      ];
-    }, 10000);
+    axiosInstance
+      .get("/search/photos?per_page=20&query=" + this.query)
+      .then(({ data }) => {
+        this.images = data.results as Image[];
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        this.loading = false;
+      });
   }
 }
 </script>

@@ -26,10 +26,10 @@ export default class ImageItem extends Vue {
 
   created(): void {
     if (this.image) {
-      this.thumbnail = this.image.urls.small;
-      this.name = this.image.user.name;
-      this.location = this.image.user.location;
-      this.bio = this.image.user.bio;
+      this.thumbnail = this.image.urls?.small;
+      this.name = this.image.user?.name;
+      this.location = this.image.user?.location;
+      this.bio = this.image.user?.bio;
     }
   }
 }

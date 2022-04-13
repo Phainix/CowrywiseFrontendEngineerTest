@@ -40,7 +40,7 @@ export default class Landing extends Vue {
 
   created(): void {
     axiosInstance
-      .get("/photos")
+      .get("/photos/random?count=20")
       .then(({ data }) => {
         this.images = data as Image[];
       })

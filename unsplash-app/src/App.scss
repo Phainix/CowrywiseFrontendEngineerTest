@@ -115,6 +115,16 @@ button#search-btn {
   }
 }
 
+.icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.back-btn {
+  padding: .8rem;
+  cursor: pointer;
+}
+
 .image-container {
   padding: 0rem 16rem;
   margin-top: -4rem;
@@ -300,6 +310,17 @@ button#search-btn {
   height: 84%;
   object-fit: contain;
   z-index: 1;
+  opacity: 0;
+  animation: show 1s ease 1 1s forwards;
+}
+
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .modal-image-canvas {
@@ -328,6 +349,10 @@ button#search-btn {
     margin-bottom: 1rem;
     font-weight: 700;
     color: #6d7c91;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+    overflow: hidden;
   }
 }
 
