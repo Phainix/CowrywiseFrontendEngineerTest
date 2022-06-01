@@ -2,7 +2,7 @@ import { shallowMount } from "@vue/test-utils";
 import ImageGrid from "@/components/ImageGrid.vue";
 import { MockImage } from "../utils";
 
-describe("TopBar.vue", () => {
+describe("ImageGrid.vue", () => {
   it("renders image-container", () => {
     const wrapper = shallowMount(ImageGrid, {
       props: {},
@@ -31,6 +31,46 @@ describe("TopBar.vue", () => {
     const imageItem = wrapper.find(".image-item");
     expect(imageItem.exists()).toBeTruthy();
     expect(imageItem.find(".user-name").text()).toBe(MockImage.user.name);
-    expect(imageItem.find(".user-location").text()).toBe(MockImage.user.location);
+    expect(imageItem.find(".user-location").text()).toBe(
+      MockImage.user.location
+    );
+  });
+
+  it("should show modal when ImageItem is clicked", async () => {
+    const wrapper = shallowMount(ImageGrid, {
+      props: {
+        images: [MockImage],
+      },
+    });
+
+    expect(wrapper.find("image-modal-stub").attributes().show).toBe("false");
+
+    const imageItem = wrapper.find("image-item-stub");
+    imageItem.trigger("click");
+    await wrapper.vm.$nextTick();
+
+    expect(wrapper.find("image-modal-stub").attributes().show).toBe("true");
+  });
+
+  it("should hide modal when ImageModal emits onClose", async () => {
+    const wrapper = shallowMount(ImageGrid, {
+      props: {
+        images: [MockImage],
+      },
+      global: { stubs: { ImageModal: false, CloseIcon: true } },
+    });
+
+    expect(wrapper.find(".modal.show").exists()).toBeFalsy();
+    const imageItem = wrapper.find("image-item-stub");
+    imageItem.trigger("click");
+    await wrapper.vm.$nextTick();
+    expect(wrapper.find(".modal.show").exists()).toBeTruthy();
+
+    const closeIcon = wrapper.find(".modal .close");
+
+    closeIcon.trigger("click");
+    await wrapper.vm.$nextTick();
+
+    expect(wrapper.find(".modal.show").exists()).toBeFalsy();
   });
 });

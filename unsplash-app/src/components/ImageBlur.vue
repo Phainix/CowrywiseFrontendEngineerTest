@@ -18,7 +18,7 @@ import { decode, isBlurhashValid } from "blurhash";
     },
   },
 })
-export default class ImageModal extends Vue {
+export default class ImageBlur extends Vue {
   hash!: string;
   width!: number;
   height!: number;

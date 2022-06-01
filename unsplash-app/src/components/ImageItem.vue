@@ -5,7 +5,7 @@
       :width="image?.width"
       :height="image?.height"
     />
-    <img :src="thumbnail" alt="" srcset="" />
+    <img :src="thumbnail" alt="" srcset="" class="image" />
     <div class="image-overlay">
       <span class="user-name">{{ name }}</span>
       <small class="user-location">{{ location ?? bio }}</small>
